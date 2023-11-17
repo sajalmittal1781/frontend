@@ -12,10 +12,12 @@ const AccountCreationTab = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/users', { username, password });
+      await axios.post('http://localhost:5000/api/users', { username, password ,email,phone });
       console.log('Account created successfully');
       setUsername('');
       setPassword('');
+      setPhone('');
+      setEmail('');
     } catch (error) {
       console.error('Error creating account:', error);
     }
@@ -73,8 +75,9 @@ const AccountCreationTab = () => {
           <input
             className="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 
-            type="text"
+            type="tel"
             value={phone}
+            pattern="[0-9]{10}"
             onChange={(e) => setPhone(e.target.value)}
             required
           />
